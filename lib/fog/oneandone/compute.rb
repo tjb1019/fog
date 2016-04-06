@@ -215,7 +215,7 @@ module Fog
             raise error
           end
 
-          response.body
+          response
 
         end
 

@@ -7,7 +7,8 @@ module Fog
         model Fog::Compute::OneAndOne::Server
 
         def all
-          # load(data)
+          data = service.list_servers.body
+          load(data)
         end
 
         def get(id)
