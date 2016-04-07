@@ -5,6 +5,8 @@ module Fog
 
         identity  :id
 
+        attribute :name
+
       end # Server
     end # OneAndOne
   end # Compute

@@ -7,14 +7,17 @@ module Fog
         model Fog::Compute::OneAndOne::Server
 
         def all
-          data = service.list_servers.body
+          response = service.list_servers
+          data = Fog::JSON.decode(response.body)
           load(data)
         end
 
         def get(id)
-          # new(data)
-          # rescue Excon::Errors::NotFound
-          # nil
+          response = service.get_server(id)
+          data = Fog::JSON.decode(response.body)
+          new(data)
+        rescue Excon::Errors::NotFound
+          nil
         end
 
       end # Servers

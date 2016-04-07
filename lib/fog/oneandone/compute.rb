@@ -195,7 +195,7 @@ module Fog
             'X-TOKEN' => @oneandone_api_key,
             'Content-Type' => 'application/json'
           }
-          @connection = Fog::XML::Connection.new(@base_url)
+          @connection = Fog::Core::Connection.new(@base_url)
 
         end
 

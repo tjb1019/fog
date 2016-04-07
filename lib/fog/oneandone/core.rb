@@ -1,5 +1,5 @@
 require "fog/core"
-require "fog/xml"
+require "fog/json"
 
 module Fog
   module OneAndOne
