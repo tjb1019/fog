@@ -3,6 +3,7 @@ module Fog
     class OneAndOne
       class MonitoringPolicy < Fog::Model
 
+        # Declare Model Attributes
         identity  :id
 
         attribute :name
@@ -18,7 +19,6 @@ module Fog
         attribute :servers
         
         
-
         def save
 
           requires :name, :agent, :email, :thresholds, :ports, :processes
@@ -42,6 +42,7 @@ module Fog
           requires :id
 
           service.delete_monitoring_policy(id)
+          
           true
 
         end

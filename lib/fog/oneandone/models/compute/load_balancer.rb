@@ -3,6 +3,7 @@ module Fog
     class OneAndOne
       class LoadBalancer < Fog::Model
 
+        # Declare Model Attributes
         identity  :id
 
         attribute :name
@@ -22,7 +23,6 @@ module Fog
         attribute :server_ips
         
         
-
         def save
 
           requires :name, :rules, :health_check_test, :health_check_interval,
@@ -50,6 +50,7 @@ module Fog
           requires :id
 
           service.delete_load_balancer(id)
+          
           true
 
         end

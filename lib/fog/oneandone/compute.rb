@@ -2,6 +2,10 @@ module Fog
   module Compute
     class OneAndOne < Fog::Service
 
+      # Globals
+      SUCCESS_CODES = [200, 201, 202]
+
+      # Required Initialization Parameters
       requires :oneandone_api_key
 
       # Models
@@ -222,18 +226,20 @@ module Fog
 
         def request(params)
 
-          begin
-            response = @connection.request(:method => params['method'],
-              :path => @version + params['endpoint'],
-              :headers => @header,
-              :body => params['body'],
-              :query => params['params'])
-          rescue Excon::Errors::Unauthorized => error
-            raise error
-          rescue Excon::Errors::HTTPStatusError => error
-            raise error
-          rescue Excon::Errors::InternalServerError => error
-            raise error
+          response = @connection.request(:method => params['method'],
+            :path => @version + params['endpoint'],
+            :headers => @header,
+            :body => params['body'],
+            :query => params['params'])
+
+          # Check for server error
+          if response.status == 500
+            raise "Internal Server Error.  Please try again."
+          end
+
+          # Raise exception if a bad status code is received
+          if not SUCCESS_CODES.include? response.status
+            raise response.body
           end
 
           response

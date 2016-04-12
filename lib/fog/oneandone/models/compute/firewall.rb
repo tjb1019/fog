@@ -3,6 +3,7 @@ module Fog
     class OneAndOne
       class Firewall < Fog::Model
 
+        # Declare Model Attributes
         identity  :id
 
         attribute :name
@@ -13,7 +14,6 @@ module Fog
         attribute :server_ips
         
         
-
         def save
 
           requires :name, :rules
@@ -36,6 +36,7 @@ module Fog
           requires :id
 
           service.delete_firewall(id)
+          
           true
 
         end

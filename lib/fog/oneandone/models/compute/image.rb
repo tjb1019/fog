@@ -3,6 +3,7 @@ module Fog
     class OneAndOne
       class Image < Fog::Model
 
+        # Declare Model Attributes
         identity  :id
 
         attribute :name
@@ -16,7 +17,7 @@ module Fog
         attribute :num_images
         attribute :creation_date
         
-
+        
         def save
 
           requires :name, :server_id, :frequency, :num_images
@@ -39,6 +40,7 @@ module Fog
           requires :id
 
           service.delete_image(id)
+          
           true
 
         end
@@ -46,7 +48,7 @@ module Fog
 
         def ready?
 
-          state == 'ACTIVE'
+          state == 'ENABLED'
 
         end
 

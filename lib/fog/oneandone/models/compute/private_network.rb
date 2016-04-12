@@ -3,6 +3,7 @@ module Fog
     class OneAndOne
       class PrivateNetwork < Fog::Model
 
+        # Declare Model Attributes
         identity  :id
 
         attribute :name
@@ -17,7 +18,6 @@ module Fog
         attribute :servers
         
         
-
         def save
 
           requires :name
@@ -41,6 +41,7 @@ module Fog
           requires :id
 
           service.delete_private_network(id)
+          
           true
 
         end

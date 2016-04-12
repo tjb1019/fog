@@ -3,6 +3,10 @@ module Fog
     class OneAndOne
       class Server < Fog::Model
 
+        # Globals
+        GOOD_STATES = ['POWERED_ON', 'POWERED_OFF']
+
+        # Declare Model Attributes
         identity  :id
 
         attribute :name
@@ -34,6 +38,7 @@ module Fog
         attribute :monitoring_policy
         attribute :private_networks
 
+        
         def save
 
           requires :name, :appliance_id
@@ -41,12 +46,6 @@ module Fog
           # Check for Additional Required Parameters
           if (!fixed_instance_id)
             requires :ram, :vcore, :cores_per_processor, :hdds
-          elsif (!ram || !vcore || !cores_per_processor || !hdds)
-            requires :fixed_instance_id
-          else
-            raise ArgumentError, 'Must establish hardware specifications using 
-              either fixed_instance_id, or by manually specifying ram, vcore,
-              cores_per_processor, and hdds.'
           end
 
           # Perform Request
@@ -72,6 +71,7 @@ module Fog
           requires :id
 
           service.delete_server(id)
+          
           true
 
         end
@@ -79,7 +79,7 @@ module Fog
 
         def ready?
 
-          ['POWERED_ON', 'POWERED_OFF'].include? status['state']
+          GOOD_STATES.include? status['state']
 
         end
 

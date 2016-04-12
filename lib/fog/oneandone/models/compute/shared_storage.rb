@@ -3,6 +3,7 @@ module Fog
     class OneAndOne
       class SharedStorage < Fog::Model
 
+        # Declare Model Attributes
         identity  :id
 
         attribute :name
@@ -15,7 +16,6 @@ module Fog
         attribute :servers
         
         
-
         def save
 
           requires :name, :size
@@ -38,6 +38,7 @@ module Fog
           requires :id
 
           service.delete_shared_storage(id)
+          
           true
 
         end

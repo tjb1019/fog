@@ -3,6 +3,7 @@ module Fog
     class OneAndOne
       class PublicIp < Fog::Model
 
+        # Declare Model Attributes
         identity  :id
 
         attribute :type
@@ -15,7 +16,6 @@ module Fog
         attribute :creation_date
         
         
-
         def save
 
           # Perform Request
@@ -36,6 +36,7 @@ module Fog
           requires :id
 
           service.delete_public_ip(id)
+          
           true
 
         end
