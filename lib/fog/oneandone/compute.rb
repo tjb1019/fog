@@ -10,6 +10,27 @@ module Fog
       model :server
       collection :servers
 
+      model :image
+      collection :images
+
+      model :shared_storage
+      collection :shared_storages
+
+      model :firewall
+      collection :firewalls
+
+      model :load_balancer
+      collection :load_balancers
+
+      model :public_ip
+      collection :public_ips
+
+      model :private_network
+      collection :private_networks
+
+      model :monitoring_policy
+      collection :monitoring_policies
+
       # Requests
       request_path 'fog/oneandone/requests/compute'
 

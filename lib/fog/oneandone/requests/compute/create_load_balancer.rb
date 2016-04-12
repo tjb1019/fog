@@ -11,7 +11,7 @@ module Fog
         def create_load_balancer(name: nil, description: nil,
           health_check_test: nil, health_check_interval: nil, persistence: nil,
           persistence_time: nil, method: nil, rules: nil,
-          health_check_path: nil, health_check_parse: nil)
+          health_check_path: nil, health_check_parse: nil, datacenter_id: nil)
           
           # Build POST body
           new_load_balancer = {
