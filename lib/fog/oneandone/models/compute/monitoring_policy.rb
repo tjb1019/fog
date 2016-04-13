@@ -37,6 +37,23 @@ module Fog
         end
 
 
+        def update(options = {})
+
+          requires :id
+
+          response = service.update_monitoring_policy(monitoring_policy_id: id,
+            name: options[:name], description: options[:description],
+            email: options[:email], thresholds: options[:thresholds])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
         def destroy
 
           requires :id

@@ -45,6 +45,29 @@ module Fog
         end
 
 
+        def update(options = {})
+
+          requires :id
+
+          response = service.update_load_balancer(load_balancer_id: id,
+            name: options[:name], description: options[:description],
+            health_check_test: options[:health_check_test],
+            health_check_interval: options[:health_check_interval],
+            persistence: options[:persistence],
+            persistence_time: options[:persistence_time],
+            method: options[:method],
+            health_check_path: options[:health_check_path],
+            health_check_parse: options[:health_check_parse])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
         def destroy
 
           requires :id

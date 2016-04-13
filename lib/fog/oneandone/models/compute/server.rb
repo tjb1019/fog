@@ -66,6 +66,22 @@ module Fog
         end
 
 
+        def update(options = {})
+
+          requires :id
+
+          response = service.update_server(server_id: id, name: options[:name],
+            description: options[:description])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
         def destroy
 
           requires :id

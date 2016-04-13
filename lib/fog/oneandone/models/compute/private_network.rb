@@ -36,6 +36,24 @@ module Fog
         end
 
 
+        def update(options = {})
+
+          requires :id
+
+          response = service.update_private_network(private_network_id: id,
+            name: options[:name], description: options[:description],
+            network_address: options[:network_address],
+            subnet_mask: options[:subnet_mask])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
         def destroy
 
           requires :id
