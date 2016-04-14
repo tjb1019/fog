@@ -165,6 +165,276 @@ module Fog
         end
 
 
+        def add_ip
+
+          requires :id
+
+          response = service.add_server_ip(server_id: id)
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def delete_ip(options = {})
+
+          requires :id
+
+          response = service.delete_server_ip(server_id: id,
+            ip_id: options[:ip_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def add_firewall(options = {})
+
+          requires :id
+
+          response = service.add_firewall(server_id: id,
+            ip_id: options[:ip_id], firewall_id: options[:firewall_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def remove_firewall(options = {})
+
+          requires :id
+
+          response = service.remove_firewall(server_id: id,
+            ip_id: options[:ip_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def add_load_balancer(options = {})
+
+          requires :id
+
+          response = service.add_load_balancer(server_id: id,
+            ip_id: options[:ip_id],
+            load_balancer_id: options[:load_balancer_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def remove_load_balancer(options = {})
+
+          requires :id
+
+          response = service.remove_load_balancer(server_id: id,
+            ip_id: options[:ip_id],
+            load_balancer_id: options[:load_balancer_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def on
+
+          requires :id
+
+          response = service.change_status(server_id: id,
+            action: 'POWER_ON', method: 'SOFTWARE')
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def off
+
+          requires :id
+
+          response = service.change_status(server_id: id,
+            action: 'POWER_OFF', method: 'SOFTWARE')
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def reboot
+
+          requires :id
+
+          response = service.change_status(server_id: id,
+            action: 'REBOOT', method: 'SOFTWARE')
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def load_dvd(options = {})
+
+          requires :id
+
+          response = service.load_dvd(server_id: id, :dvd_id: options[:dvd_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def eject_dvd
+
+          requires :id
+
+          response = service.eject_dvd(server_id: id)
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def add_private_network(options = {})
+
+          requires :id
+
+          response = service.add_private_network(server_id: id,
+            :private_network_id: options[:private_network_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def remove_private_network(options = {})
+
+          requires :id
+
+          response = service.remove_private_network(server_id: id,
+            :private_network_id: options[:private_network_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def create_snapshot
+
+          requires :id
+
+          response = service.create_snapshot(server_id: id)
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def restore_snapshot(options = {})
+
+          requires :id
+
+          response = service.restore_snapshot(server_id: id,
+            :snapshot_id: options[:snapshot_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def delete_snapshot(options = {})
+
+          requires :id
+
+          response = service.delete_snapshot(server_id: id,
+            :snapshot_id: options[:snapshot_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def clone(options = {})
+
+          requires :id
+
+          response = service.clone_server(server_id: id, name: options[:name],
+            datacenter_id: options[:datacenter_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
         def destroy
 
           requires :id
