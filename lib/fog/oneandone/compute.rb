@@ -260,7 +260,36 @@ module Fog
 
       class Mock
 
-        # Mock class
+        def self.data
+          
+          @data ||= Hash.new do |hash, key|
+            hash[key] = {
+              :servers  => []
+            }
+          end
+
+        end
+
+
+        def initialize(options={})
+          
+          @oneandone_api_key = options[:oneandone_api_key]
+
+        end
+
+
+        def data
+
+          self.class.data[@oneandone_api_key]
+
+        end
+
+
+        def reset_data
+
+          self.class.data.delete(@oneandone_api_key)
+
+        end
 
       end # Mock
 

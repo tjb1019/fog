@@ -54,6 +54,135 @@ module Fog
         end
 
 
+        def add_ports(options = {})
+
+          requires :id
+
+          response = service.add_ports(monitoring_policy_id: id,
+            ports: options[:ports])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def delete_port(options = {})
+
+          requires :id
+
+          response = service.delete_port(monitoring_policy_id: id,
+            port_id: options[:port_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def update_port(options = {})
+
+          requires :id
+
+          response = service.update_port(monitoring_policy_id: id,
+            port_id: options[:port_id], new_port: options[:new_port])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def add_processes(options = {})
+
+          requires :id
+
+          response = service.add_processes(monitoring_policy_id: id,
+            processes: options[:processes])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def delete_process(options = {})
+
+          requires :id
+
+          response = service.delete_process(monitoring_policy_id: id,
+            process_id: options[:process_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def update_process(options = {})
+
+          requires :id
+
+          response = service.update_process(monitoring_policy_id: id,
+            process_id: options[:process_id],
+            new_process: options[:new_process])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def add_servers(options = {})
+
+          requires :id
+
+          response = service.add_mp_servers(monitoring_policy_id: id,
+            servers: options[:servers])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def remove_server(options = {})
+
+          requires :id
+
+          response = service.remove_mp_server(monitoring_policy_id: id,
+            server_id: options[:server_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
         def destroy
 
           requires :id

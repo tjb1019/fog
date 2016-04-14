@@ -68,6 +68,70 @@ module Fog
         end
 
 
+        def add_ips(options = {})
+
+          requires :id
+
+          response = service.add_load_balancer_ips(load_balancer_id: id,
+            ips: options[:ips])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def remove_ip(options = {})
+
+          requires :id
+
+          response = service.remove_load_balancer_ip(load_balancer_id: id,
+            ip_id: options[:ip_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def add_rules(options = {})
+
+          requires :id
+
+          response = service.add_load_balancer_rules(load_balancer_id: id,
+            rules: options[:rules])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def delete_rule(options = {})
+
+          requires :id
+
+          response = service.delete_load_balancer_rule(load_balancer_id: id,
+            rule_id: options[:rule_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
         def destroy
 
           requires :id

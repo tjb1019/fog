@@ -64,8 +64,60 @@ module Fog
       
       class Mock
 
-        def create_server(server_id)
-          Fog::Mock.not_implemented
+        def create_server(name: nil, description: nil, rsa_key: nil,
+          fixed_instance_id: nil, vcore: nil, cores_per_processor: nil,
+          ram: nil, appliance_id: nil, datacenter_id: nil, hdds: nil,
+          password: nil, power_on: nil, firewall_id: nil, ip_id: nil,
+          load_balancer_id: nil, monitoring_policy_id: nil)
+          
+          # Create mock server hash
+          server_id = Fog::UUID.uuid
+
+          mock_server = {
+            "id" => server_id,
+            "cloudpanel_id" => "FE7ED7D",
+            "name" => name,
+            "description" => description,
+            "datacenter" => {
+              "id" => datacenter_id,
+              "location" => "USA",
+              "country_code" => "US"
+            },
+            "creation_date" => "2015-05-07T08:25:37+00:00",
+            "first_password" => "Nm4gP97xSw",
+            "status" => {
+              "state" => "POWERED_ON",
+              "percent" => nil
+            },
+            "hardware" => {
+              "fixed_instance_size_id" => fixed_instance_id,
+              "vcore" => vcore,
+              "cores_per_processor" => cores_per_processor,
+              "ram" => ram,
+              "hdds" => hdds
+            },
+            "image" => {
+              "id" => appliance_id,
+              "name" => nil
+            },
+            "dvd" => nil,
+            "snapshot" => nil,
+            "ips" => nil,
+            "alerts" => [],
+            "monitoring_policy" => nil,
+            "private_networks" => nil
+          }
+
+          # Save mock server to servers list
+          self.data[:servers] << mock_server
+
+          # Return mock server to user
+          response = Excon::Response.new
+          response.status = 202
+          response.body = mock_server
+            
+          response
+
         end
 
       end # Mock

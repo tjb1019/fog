@@ -47,6 +47,70 @@ module Fog
         end
 
 
+        def add_ips(options = {})
+
+          requires :id
+
+          response = service.add_firewall_ips(firewall_id: id,
+            ips: options[:ips])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def remove_ip(options = {})
+
+          requires :id
+
+          response = service.remove_firewall_ip(firewall_id: id,
+            ip_id: options[:ip_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def add_rules(options = {})
+
+          requires :id
+
+          response = service.add_firewall_rules(firewall_id: id,
+            rules: options[:rules])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def delete_rule(options = {})
+
+          requires :id
+
+          response = service.delete_firewall_rule(firewall_id: id,
+            rule_id: options[:rule_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
         def destroy
 
           requires :id

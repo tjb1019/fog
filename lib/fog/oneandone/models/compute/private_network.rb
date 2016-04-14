@@ -54,6 +54,38 @@ module Fog
         end
 
 
+        def add_servers(options = {})
+
+          requires :id
+
+          response = service.add_private_network_servers(private_network_id: id,
+            servers: options[:servers])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def remove_server(options = {})
+
+          requires :id
+
+          response = service.remove_private_network_server(private_network_id: id,
+            server_id: options[:server_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
         def destroy
 
           requires :id

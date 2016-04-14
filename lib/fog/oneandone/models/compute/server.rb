@@ -314,7 +314,7 @@ module Fog
 
           requires :id
 
-          response = service.load_dvd(server_id: id, :dvd_id: options[:dvd_id])
+          response = service.load_dvd(server_id: id, dvd_id: options[:dvd_id])
 
           # Decode and Merge Attributes
           data = Fog::JSON.decode(response.body)
@@ -345,7 +345,7 @@ module Fog
           requires :id
 
           response = service.add_private_network(server_id: id,
-            :private_network_id: options[:private_network_id])
+            private_network_id: options[:private_network_id])
 
           # Decode and Merge Attributes
           data = Fog::JSON.decode(response.body)
@@ -361,7 +361,7 @@ module Fog
           requires :id
 
           response = service.remove_private_network(server_id: id,
-            :private_network_id: options[:private_network_id])
+            private_network_id: options[:private_network_id])
 
           # Decode and Merge Attributes
           data = Fog::JSON.decode(response.body)
@@ -392,7 +392,7 @@ module Fog
           requires :id
 
           response = service.restore_snapshot(server_id: id,
-            :snapshot_id: options[:snapshot_id])
+            snapshot_id: options[:snapshot_id])
 
           # Decode and Merge Attributes
           data = Fog::JSON.decode(response.body)
@@ -408,7 +408,7 @@ module Fog
           requires :id
 
           response = service.delete_snapshot(server_id: id,
-            :snapshot_id: options[:snapshot_id])
+            snapshot_id: options[:snapshot_id])
 
           # Decode and Merge Attributes
           data = Fog::JSON.decode(response.body)
