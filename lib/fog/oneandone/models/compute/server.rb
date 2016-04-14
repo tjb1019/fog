@@ -82,6 +82,89 @@ module Fog
         end
 
 
+        def update_hardware(options = {})
+
+          requires :id
+
+          response = service.update_hardware(server_id: id,
+            fixed_instance_id: options[:fixed_instance_id],
+            vcore: options[:vcore], ram: options[:ram],
+            cores_per_processor: options[:cores_per_processor])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def add_hdds(options = {})
+
+          requires :id
+
+          response = service.add_hdds(server_id: id,
+            hdds: options[:hdds])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def delete_hdd(options = {})
+
+          requires :id
+
+          response = service.delete_hdd(server_id: id,
+            hdd_id: options[:hdd_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def resize_hdd(options = {})
+
+          requires :id
+
+          response = service.update_hdd(server_id: id,
+            hdd_id: options[:hdd_id], size: options[:size])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
+        def install_image(options = {})
+
+          requires :id
+
+          response = service.install_server_image(server_id: id,
+            image_id: options[:image_id], password: options[:password],
+            firewall_id: options[:firewall_id])
+
+          # Decode and Merge Attributes
+          data = Fog::JSON.decode(response.body)
+          merge_attributes(data)
+
+          true
+
+        end
+
+
         def destroy
 
           requires :id
@@ -95,7 +178,7 @@ module Fog
 
         def ready?
 
-          GOOD_STATES.include? status['state']
+          (GOOD_STATES.include? status['state']) && (status['percent'] == nil)
 
         end
 
