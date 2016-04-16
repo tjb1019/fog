@@ -25,7 +25,32 @@ module Fog
       class Mock
 
         def remove_firewall_ip(firewall_id: nil, ip_id: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for firewall
+          if firewall = self.data[:firewalls].find {
+            |hash| hash['id'] == firewall_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Search for server IP to destroy
+          if ip = firewall['server_ips'].find {
+            |index| index == ip_id
+          }
+            firewall['server_ips'].delete(ip)
+          else
+            raise Fog::Errors::NotFound.new('The requested server IP could
+            not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = firewall
+          response
+
         end
 
       end # Mock

@@ -25,7 +25,22 @@ module Fog
       class Mock
 
         def get_image(image_id)
-          Fog::Mock.not_implemented
+          
+          # Search for image to return
+          if image = self.data[:images].find {
+            |hash| hash['id'] == image_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = image
+          response
+
         end
 
       end # Mock

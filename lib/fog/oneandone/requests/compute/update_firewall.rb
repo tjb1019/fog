@@ -39,7 +39,34 @@ module Fog
       class Mock
 
         def update_firewall(firewall_id: nil, name: nil, description: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for firewall to update
+          if firewall = self.data[:firewalls].find {
+            |hash| hash['id'] == firewall_id
+          }
+            # Create parameter hash 
+            params = {
+              'name' => name,
+              'description' => description
+            }
+            
+            # Update the firewall we found with new values
+            params.each do |key, value|
+              if value
+                firewall[key] = value
+              end
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = firewall
+          response
+
         end
 
       end # Mock

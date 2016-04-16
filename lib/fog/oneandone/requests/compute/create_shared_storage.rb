@@ -43,7 +43,37 @@ module Fog
 
         def create_shared_storage(name: nil, description: nil,
           size: nil, datacenter_id: nil)
-          Fog::Mock.not_implemented
+          
+          # Create mock shared storage hash
+          mock_shared_storage = {
+            "id" => Fog::UUID.uuid,
+            "size" => size,
+            "state" => "ACTIVE",
+            "description" => description,
+            "datacenter" => {
+              "id" => datacenter_id,
+              "location" => "USA",
+              "country_code" => "US"
+            },
+            "cloudpanel_id" => "vid35780",
+            "size_used" => "0.00",
+            "cifs_path" => "\\vid50995.nas1.lan\vid50995",
+            "nfs_path" => "vid50995.nas1.lan/:vid50995",
+            "name" => name,
+            "creation_date" => "2015-05-06T08:33:25+00:00",
+            "servers" => []
+          }
+
+          # Save mock shared storage to list
+          self.data[:shared_storages] << mock_shared_storage
+
+          # Return mock response to user
+          response = Excon::Response.new
+          response.status = 202
+          response.body = mock_shared_storage
+            
+          response
+
         end
 
       end # Mock

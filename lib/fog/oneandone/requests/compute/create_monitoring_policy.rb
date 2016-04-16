@@ -46,7 +46,34 @@ module Fog
 
         def create_monitoring_policy(name: nil, description: nil, email: nil,
           agent: nil, thresholds: nil, ports: nil, processes: nil)
-          Fog::Mock.not_implemented
+          
+          # Create mock monitoring policy hash
+          mock_monitoring_policy = {
+            "id" => Fog::UUID.uuid,
+            "name" => name,
+            "description" => description,
+            "default" => 0,
+            "state" => "ACTIVE",
+            "creation_date" => "2015-05-07T07:34:41+00:00",
+            "email" => email,
+            "agent" => agent,
+            "servers" => [],
+            "thresholds" => thresholds,
+            "ports" => ports,
+            "processes" => processes,
+            "cloudpanel_id" => "mo8962D_3"
+          }
+
+          # Save mock monitoring policy to list
+          self.data[:monitoring_policies] << mock_monitoring_policy
+
+          # Return mock response to user
+          response = Excon::Response.new
+          response.status = 202
+          response.body = mock_monitoring_policy
+            
+          response
+
         end
 
       end # Mock

@@ -42,7 +42,35 @@ module Fog
 
         def update_shared_storage(shared_storage_id: nil, name: nil,
           description: nil, size: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for shared storage to update
+          if shared_storage = self.data[:shared_storages].find {
+            |hash| hash['id'] == shared_storage_id
+          }
+            # Create parameter hash 
+            params = {
+              'name' => name,
+              'description' => description,
+              'size' => size
+            }
+            
+            # Update the shared storage we found with new values
+            params.each do |key, value|
+              if value
+                shared_storage[key] = value
+              end
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = shared_storage
+          response
+
         end
 
       end # Mock

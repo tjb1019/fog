@@ -44,7 +44,35 @@ module Fog
 
         def create_private_network(name: nil, description: nil,
           network_address: nil, subnet_mask: nil, datacenter_id: nil)
-          Fog::Mock.not_implemented
+          
+          # Create mock private network hash
+          mock_private_network = {
+            "id" => Fog::UUID.uuid,
+            "name" => name,
+            "description" => description,
+            "datacenter" => {
+              "id" => datacenter_id,
+              "location" => "USA",
+              "country_code" => "US"
+            },
+            "network_address" => network_address,
+            "subnet_mask" => subnet_mask,
+            "state" => "ACTIVE",
+            "creation_date" => "2015-05-04T08:35:12+00:00",
+            "servers" => [],
+            "cloudpanel_id" => "pn99AA4_2"
+          }
+
+          # Save mock private network to list
+          self.data[:private_networks] << mock_private_network
+
+          # Return mock response to user
+          response = Excon::Response.new
+          response.status = 202
+          response.body = mock_private_network
+            
+          response
+
         end
 
       end # Mock

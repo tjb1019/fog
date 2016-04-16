@@ -25,7 +25,31 @@ module Fog
       class Mock
 
         def get_firewall_ip(firewall_id: nil, ip_id: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for firewall
+          if firewall = self.data[:firewalls].find {
+            |hash| hash['id'] == firewall_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Search for server IP to return
+          if ip = firewall['server_ips'].find {
+            |string| string == ip_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested server could
+            not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 200
+          response.body = ip
+          response
+
         end
 
       end # Mock

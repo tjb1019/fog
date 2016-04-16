@@ -41,7 +41,12 @@ module Fog
 
         def list_shared_storages(page: nil, per_page: nil, sort: nil, q: nil,
           fields: nil)
-          Fog::Mock.not_implemented
+          
+          response = Excon::Response.new
+          response.status = 200
+          response.body = self.data[:shared_storages]
+          response
+
         end
 
       end # Mock

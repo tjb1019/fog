@@ -44,7 +44,54 @@ module Fog
 
         def create_image(server_id: nil, name: nil, description: nil,
           frequency: nil, num_images: nil)
-          Fog::Mock.not_implemented
+          
+          # Create mock image hash
+          mock_image = {
+            "id" => Fog::UUID.uuid,
+            "name" => name,
+            "datacenter" => {
+              "id" => "D0F6D8C8ED29D3036F94C27BBB7BAD36",
+              "location" => "USA",
+              "country_code" => "US"
+            },
+            "os_family" => "Windows",
+            "os" => "WindowsDatacenter",
+            "os_version" => "Windows2012R2",
+            "architecture" => 64,
+            "os_image_type" => "Personal",
+            "type" => "MY_IMAGE",
+            "min_hdd_size" => 40,
+            "licenses" => [
+            {
+              "name" => "Windows 2012 Standard"
+            }
+            ],
+            "cloudpanel_id" => "ap8962D_253",
+            "state" => "ENABLED",
+            "description" => description,
+            "hdds" => [
+            {
+              "id" => "D0289C1FDF48628FE53335470EEC05DB",
+              "size" => 40,
+              "is_main" => true
+            }
+            ],
+            "server_id" => server_id,
+            "frequency" => frequency,
+            "num_images" => num_images,
+            "creation_date" => "2015-05-06T08:04:41+00:00"
+          }
+
+          # Save mock image to images list
+          self.data[:images] << mock_image
+
+          # Return mock response to user
+          response = Excon::Response.new
+          response.status = 202
+          response.body = mock_image
+            
+          response
+
         end
 
       end # Mock

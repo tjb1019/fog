@@ -71,10 +71,8 @@ module Fog
           load_balancer_id: nil, monitoring_policy_id: nil)
           
           # Create mock server hash
-          server_id = Fog::UUID.uuid
-
           mock_server = {
-            "id" => server_id,
+            "id" => Fog::UUID.uuid,
             "cloudpanel_id" => "FE7ED7D",
             "name" => name,
             "description" => description,
@@ -111,7 +109,7 @@ module Fog
           # Save mock server to servers list
           self.data[:servers] << mock_server
 
-          # Return mock server to user
+          # Return mock response to user
           response = Excon::Response.new
           response.status = 202
           response.body = mock_server

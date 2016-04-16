@@ -38,7 +38,27 @@ module Fog
       class Mock
 
         def add_firewall_rules(firewall_id: nil, rules: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for firewall to return
+          if firewall = self.data[:firewalls].find {
+            |hash| hash['id'] == firewall_id
+          }
+            # Add rules
+            rules.each do |rule|
+              rule['id'] = Fog::UUID.uuid
+              firewall['rules'] << rule
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = firewall
+          response
+
         end
 
       end # Mock

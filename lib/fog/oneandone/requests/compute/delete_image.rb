@@ -25,7 +25,23 @@ module Fog
       class Mock
 
         def delete_image(image_id)
-          Fog::Mock.not_implemented
+          
+          # Search for image to delete
+          if image = self.data[:images].find {
+            |hash| hash['id'] == image_id
+          }
+            self.data[:images].delete(image)
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = 'The requested image has been deleted.'
+          response
+
         end
 
       end # Mock

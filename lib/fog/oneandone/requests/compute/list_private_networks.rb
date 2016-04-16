@@ -41,7 +41,12 @@ module Fog
 
         def list_private_networks(page: nil, per_page: nil, sort: nil, q: nil,
           fields: nil)
-          Fog::Mock.not_implemented
+          
+          response = Excon::Response.new
+          response.status = 200
+          response.body = self.data[:private_networks]
+          response
+
         end
 
       end # Mock

@@ -41,7 +41,12 @@ module Fog
 
         def list_monitoring_policies(page: nil, per_page: nil, sort: nil, q: nil,
           fields: nil)
-          Fog::Mock.not_implemented
+          
+          response = Excon::Response.new
+          response.status = 200
+          response.body = self.data[:monitoring_policies]
+          response
+
         end
 
       end # Mock

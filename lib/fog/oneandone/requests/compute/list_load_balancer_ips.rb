@@ -25,7 +25,22 @@ module Fog
       class Mock
 
         def list_load_balancer_ips(load_balancer_id)
-          Fog::Mock.not_implemented
+          
+          # Search for load balancer to return
+          if load_balancer = self.data[:load_balancers].find {
+            |hash| hash['id'] == load_balancer_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = load_balancer['server_ips']
+          response
+
         end
 
       end # Mock

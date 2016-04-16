@@ -42,7 +42,35 @@ module Fog
 
         def update_image(image_id: nil, name: nil, description: nil,
           frequency: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for image to update
+          if image = self.data[:images].find {
+            |hash| hash['id'] == image_id
+          }
+            # Create parameter hash 
+            params = {
+              'name' => name,
+              'description' => description,
+              'frequency' => frequency
+            }
+            
+            # Update the image we found with new values
+            params.each do |key, value|
+              if value
+                image[key] = value
+              end
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = image
+          response
+
         end
 
       end # Mock

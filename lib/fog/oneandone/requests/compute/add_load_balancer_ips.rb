@@ -38,7 +38,26 @@ module Fog
       class Mock
 
         def add_load_balancer_ips(load_balancer_id: nil, ips: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for load balancer to return
+          if load_balancer = self.data[:load_balancers].find {
+            |hash| hash['id'] == load_balancer_id
+          }
+            # Add server IPs
+            ips.each do |ip|
+              load_balancer['server_ips'] << ip
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = load_balancer
+          response
+
         end
 
       end # Mock

@@ -264,7 +264,14 @@ module Fog
           
           @data ||= Hash.new do |hash, key|
             hash[key] = {
-              :servers  => []
+              :servers  => [],
+              :images  => [],
+              :shared_storages  => [],
+              :firewalls  => [],
+              :load_balancers  => [],
+              :public_ips  => [],
+              :private_networks  => [],
+              :monitoring_policies  => []
             }
           end
 

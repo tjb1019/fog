@@ -35,7 +35,26 @@ module Fog
       class Mock
 
         def add_shared_storage_servers(shared_storage_id: nil, servers: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for shared storage to return
+          if shared_storage = self.data[:shared_storages].find {
+            |hash| hash['id'] == shared_storage_id
+          }
+            # Add servers
+            servers.each do |server|
+              shared_storage['servers'] << server
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = shared_storage
+          response
+
         end
 
       end # Mock
