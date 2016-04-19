@@ -25,7 +25,31 @@ module Fog
       class Mock
 
         def get_load_balancer_rule(load_balancer_id: nil, rule_id: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for load balancer
+          if load_balancer = self.data[:load_balancers].find {
+            |hash| hash['id'] == load_balancer_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Search for rule to return
+          if rule = load_balancer['rules'].find {
+            |index| index['id'] == rule_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested rule could
+            not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 200
+          response.body = rule
+          response
+
         end
 
       end # Mock

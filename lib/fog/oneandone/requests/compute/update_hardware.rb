@@ -41,8 +41,38 @@ module Fog
       
       class Mock
 
-        def update_hardware(server_id)
-          Fog::Mock.not_implemented
+        def update_hardware(server_id: nil, fixed_instance_id: nil, vcore: nil,
+          cores_per_processor: nil, ram: nil)
+          
+          # Search for server to update
+          if server = self.data[:servers].find {
+            |hash| hash['id'] == server_id
+          }
+            # Create parameter hash 
+            params = {
+              'fixed_instance_id' => fixed_instance_id,
+              'vcore' => vcore,
+              'cores_per_processor' => cores_per_processor,
+              'ram' => ram
+            }
+            
+            # Update the server hardware with new values
+            params.each do |key, value|
+              if value
+                server['hardware'][key] = value
+              end
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = server
+          response
+
         end
 
       end # Mock

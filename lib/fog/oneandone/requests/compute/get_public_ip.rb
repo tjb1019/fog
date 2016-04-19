@@ -25,7 +25,22 @@ module Fog
       class Mock
 
         def get_public_ip(ip_id)
-          Fog::Mock.not_implemented
+          
+          # Search for IP to return
+          if public_ip = self.data[:public_ips].find {
+            |hash| hash['id'] == ip_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 200
+          response.body = public_ip
+          response
+
         end
 
       end # Mock

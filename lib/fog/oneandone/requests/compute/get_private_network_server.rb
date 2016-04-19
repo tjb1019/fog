@@ -25,7 +25,31 @@ module Fog
       class Mock
 
         def get_private_network_server(private_network_id: nil, server_id: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for private network
+          if private_network = self.data[:private_networks].find {
+            |hash| hash['id'] == private_network_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Search for server to return
+          if server = private_network['servers'].find {
+            |index| index == server_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested server could
+            not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = server
+          response
+
         end
 
       end # Mock

@@ -25,7 +25,12 @@ module Fog
       class Mock
 
         def list_fixed_servers
-          Fog::Mock.not_implemented
+          
+          response = Excon::Response.new
+          response.status = 200
+          response.body = self.data[:fixed_servers]
+          response
+
         end
 
       end # Mock

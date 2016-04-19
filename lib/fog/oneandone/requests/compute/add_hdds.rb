@@ -35,7 +35,27 @@ module Fog
       class Mock
 
         def add_hdds(server_id: nil, hdds: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for server to return
+          if server = self.data[:servers].find {
+            |hash| hash['id'] == server_id
+          }
+            # Add hdds
+            hdds.each do |hdd|
+              hdd['id'] = Fog::UUID.uuid
+              server['hardware']['hdds'] << hdd
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = server
+          response
+
         end
 
       end # Mock

@@ -70,6 +70,11 @@ module Fog
           password: nil, power_on: nil, firewall_id: nil, ip_id: nil,
           load_balancer_id: nil, monitoring_policy_id: nil)
           
+          # Add UUID to hdds being passed in
+          hdds.each do |hdd|
+            hdd['id'] = Fog::UUID.uuid
+          end
+
           # Create mock server hash
           mock_server = {
             "id" => Fog::UUID.uuid,
@@ -100,7 +105,7 @@ module Fog
             },
             "dvd" => nil,
             "snapshot" => nil,
-            "ips" => nil,
+            "ips" => [],
             "alerts" => [],
             "monitoring_policy" => nil,
             "private_networks" => nil

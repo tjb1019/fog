@@ -25,7 +25,23 @@ module Fog
       class Mock
 
         def delete_public_ip(ip_id)
-          Fog::Mock.not_implemented
+          
+          # Search for public IP to destroy
+          if ip = self.data[:public_ips].find {
+            |hash| hash['id'] == ip_id
+          }
+            self.data[:public_ips].delete(ip)
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = 'The requested public IP has been deleted.'
+          response
+
         end
 
       end # Mock

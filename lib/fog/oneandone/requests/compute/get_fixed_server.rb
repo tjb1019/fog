@@ -25,7 +25,22 @@ module Fog
       class Mock
 
         def get_fixed_server(fixed_instance_id)
-          Fog::Mock.not_implemented
+          
+          # Search for fixed server to return
+          if fixed_server = self.data[:fixed_servers].find {
+            |hash| hash['id'] == fixed_instance_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = fixed_server
+          response
+
         end
 
       end # Mock

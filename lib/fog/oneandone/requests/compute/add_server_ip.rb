@@ -38,7 +38,31 @@ module Fog
       class Mock
 
         def add_server_ip(server_id: nil, type: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for server to return
+          if server = self.data[:servers].find {
+            |hash| hash['id'] == server_id
+          }
+            # Add IP
+            new_ip = {
+              'id' => Fog::UUID.uuid,
+              'type' => type,
+              'firewall_policy' => {},
+              'load_balancers' => []
+            }
+
+            server['ips'] << new_ip
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = server
+          response
+
         end
 
       end # Mock
