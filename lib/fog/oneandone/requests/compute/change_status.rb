@@ -36,7 +36,27 @@ module Fog
       class Mock
 
         def change_status(server_id: nil, action: nil, method: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for server
+          if server = self.data[:servers].find {
+            |hash| hash['id'] == server_id
+          }
+            if action == 'POWER_ON'
+              server['status']['state'] = 'POWERED_ON'
+            elsif action == 'POWER_OFF'
+              server['status']['state'] = 'POWERED_OFF'
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = server
+          response
+
         end
 
       end # Mock

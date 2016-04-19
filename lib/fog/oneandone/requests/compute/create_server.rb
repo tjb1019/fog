@@ -104,11 +104,11 @@ module Fog
               "name" => nil
             },
             "dvd" => nil,
-            "snapshot" => nil,
+            "snapshot" => {},
             "ips" => [],
             "alerts" => [],
             "monitoring_policy" => nil,
-            "private_networks" => nil
+            "private_networks" => []
           }
 
           # Save mock server to servers list

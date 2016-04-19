@@ -25,7 +25,23 @@ module Fog
       class Mock
 
         def create_snapshot(server_id)
-          Fog::Mock.not_implemented
+          
+          # Search for server
+          if server = self.data[:servers].find {
+            |hash| hash['id'] == server_id
+          }
+            server['snapshot']['id'] = Fog::UUID.uuid
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = server
+          response
+
         end
 
       end # Mock

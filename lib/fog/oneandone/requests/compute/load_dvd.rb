@@ -35,7 +35,27 @@ module Fog
       class Mock
 
         def load_dvd(server_id: nil, dvd_id: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for server
+          if server = self.data[:servers].find {
+            |hash| hash['id'] == server_id
+          }
+            dvd = {
+              'id' => dvd_id
+            }
+
+            server['dvd'] = dvd
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 200
+          response.body = server
+          response
+
         end
 
       end # Mock
