@@ -88,7 +88,7 @@ module Fog
           # Return mock response to user
           response = Excon::Response.new
           response.status = 202
-          response.body = mock_image
+          response.body = Fog::JSON.encode(mock_image)
             
           response
 

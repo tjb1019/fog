@@ -38,7 +38,7 @@ module Fog
           # Return Response Object to User
           response = Excon::Response.new
           response.status = 200
-          response.body = image
+          response.body = Fog::JSON.encode(image)
           response
 
         end
