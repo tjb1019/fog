@@ -47,6 +47,16 @@ module Fog
         def create_monitoring_policy(name: nil, description: nil, email: nil,
           agent: nil, thresholds: nil, ports: nil, processes: nil)
           
+          # Add UUID to ports being passed in
+          ports.each do |port|
+            port['id'] = Fog::UUID.uuid
+          end
+
+          # Add UUID to processes being passed in
+          processes.each do |process|
+            process['id'] = Fog::UUID.uuid
+          end
+
           # Create mock monitoring policy hash
           mock_monitoring_policy = {
             "id" => Fog::UUID.uuid,

@@ -43,7 +43,36 @@ module Fog
 
         def update_monitoring_policy(monitoring_policy_id: nil, name: nil,
           description: nil, email: nil, thresholds: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for MP to update
+          if monitoring_policy = self.data[:monitoring_policies].find {
+            |hash| hash['id'] == monitoring_policy_id
+          }
+            # Create parameter hash 
+            params = {
+              'name' => name,
+              'description' => description,
+              'email' => email,
+              'thresholds' => thresholds
+            }
+            
+            # Update the MP we found with new values
+            params.each do |key, value|
+              if value
+                monitoring_policy[key] = value
+              end
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = monitoring_policy
+          response
+
         end
 
       end # Mock

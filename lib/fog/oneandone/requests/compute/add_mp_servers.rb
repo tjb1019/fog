@@ -35,7 +35,26 @@ module Fog
       class Mock
 
         def add_mp_servers(monitoring_policy_id: nil, servers: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for MP to return
+          if monitoring_policy = self.data[:monitoring_policies].find {
+            |hash| hash['id'] == monitoring_policy_id
+          }
+            # Add servers
+            servers.each do |server|
+              monitoring_policy['servers'] << server
+            end
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 202
+          response.body = monitoring_policy
+          response
+
         end
 
       end # Mock

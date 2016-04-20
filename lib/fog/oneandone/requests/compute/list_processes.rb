@@ -26,7 +26,22 @@ module Fog
       class Mock
 
         def list_processes(monitoring_policy_id)
-          Fog::Mock.not_implemented
+          
+          # Search for MP
+          if monitoring_policy = self.data[:monitoring_policies].find {
+            |hash| hash['id'] == monitoring_policy_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 200
+          response.body = monitoring_policy['processes']
+          response
+
         end
 
       end # Mock

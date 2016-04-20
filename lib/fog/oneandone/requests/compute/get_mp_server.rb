@@ -25,7 +25,31 @@ module Fog
       class Mock
 
         def get_mp_server(monitoring_policy_id: nil, server_id: nil)
-          Fog::Mock.not_implemented
+          
+          # Search for MP
+          if monitoring_policy = self.data[:monitoring_policies].find {
+            |hash| hash['id'] == monitoring_policy_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Search for server to return
+          if server = monitoring_policy['servers'].find {
+            |index| index['id'] == server_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested server could
+            not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 200
+          response.body = server
+          response
+
         end
 
       end # Mock
