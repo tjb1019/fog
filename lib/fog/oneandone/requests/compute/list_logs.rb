@@ -44,7 +44,12 @@ module Fog
 
         def list_logs(page: nil, per_page: nil, sort: nil, q: nil, fields: nil,
           period: 'LAST_24H', start_date: nil, end_date: nil)
-          Fog::Mock.not_implemented
+          
+          response = Excon::Response.new
+          response.status = 200
+          response.body = self.data[:logs]
+          response
+
         end
 
       end # Mock

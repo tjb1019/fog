@@ -25,7 +25,22 @@ module Fog
       class Mock
 
         def get_dvd_iso(dvd_id)
-          Fog::Mock.not_implemented
+          
+          # Search for dvd to return
+          if dvd = self.data[:dvd_isos].find {
+            |hash| hash['id'] == dvd_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 200
+          response.body = dvd
+          response
+
         end
 
       end # Mock

@@ -341,6 +341,298 @@ module Fog
                     ]
                   }
                 }
+              ],
+              :logs => [
+                {
+                  "id" => "E485755233541090E369E957EA2499D7",
+                  "start_date" => "2015-04-06T23:46:38Z",
+                  "end_date" => "2015-04-06T23:48:52Z",
+                  "duration" => 72,
+                  "status" => {
+                    "state" => "COMPLETED",
+                    "percent" => 100
+                  },
+                  "action" => "DELETE",
+                  "type" => "MONITORINGPOLICY",
+                  "resource" => {
+                    "id" => "E485755233541090E6546957EA2499D7",
+                    "name" => "My Monitoring Policy 1"
+                  },
+                  "details" => {
+                    
+                  },
+                  "user" => {
+                    "id" => "7C88E50FBC500A3D9D7F94E414255D6B",
+                    "name" => "034b011e.user"
+                  },
+                  "cloudpanel_id" => "ap99AA4_1"
+                },
+                {
+                  "id" => "E485755233541090E369E957EA2499D8",
+                  "start_date" => "2015-04-06T23:51:00Z",
+                  "end_date" => "2015-04-06T23:51:29Z",
+                  "duration" => 29,
+                  "status" => {
+                    "state" => "COMPLETED",
+                    "percent" => 100
+                  },
+                  "action" => "CREATE",
+                  "type" => "MONITORINGPOLICY",
+                  "resource" => {
+                    "id" => "E485755233541090E6546957EA2499D7",
+                    "name" => "My Monitoring Policy test"
+                  },
+                  "details" => {
+                    
+                  },
+                  "user" => {
+                    "id" => "7C88E50FBC500A3D9D7F94E414255D6B",
+                    "name" => "034b011e.user"
+                  }
+                }
+              ],
+              :server_appliances => [
+                {
+                  "id" => "55726DEDA20C99CF6F2AF8F18CAC9963",
+                  "name" => "w2012r2datacenter64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_installation_base" => "ISO_OS",
+                  "os_family" => "Windows",
+                  "os" => "WindowsDatacenter",
+                  "os_version" => "Windows2012R2",
+                  "min_hdd_size" => 40,
+                  "os_architecture" => 64,
+                  "licenses" => nil,
+                  "type" => "ISO",
+                  "version" => nil,
+                  "categories" => [],
+                  "eula_url" => nil
+                },
+                {
+                  "id" => "81504C620D98BCEBAA5202D145203B4C",
+                  "name" => "Windows 2008R2 - 64 bits (Standard) + SQL Server 2012 (Standard)",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_installation_base" => "Standard",
+                  "os_family" => "Windows",
+                  "os" => "Windows",
+                  "os_version" => "Windows 2008R2",
+                  "min_hdd_size" => 40,
+                  "os_architecture" => 64,
+                  "licenses" =>[
+                  "Windows",
+                  "SQL Server"
+                  ],
+                  "type" => "IMAGE", 
+                  "version" => nil,
+                  "categories" => [],
+                  "eula_url" => nil
+                }
+              ],
+              :dvd_isos => [
+                {
+                  "id" => "55726DEDA20C99CF6F2AF8F18CAC9963",
+                  "name" => "w2012r2datacenter64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Windows",
+                  "os" => "WindowsDatacenter",
+                  "os_version" => "Windows2012R2",
+                  "os_architecture" => 64,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "B675B070A3BB5C8D71B2129952F04BC8",
+                  "name" => "ubuntu1404-64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "Ubuntu",
+                  "os_version" => "Ubuntu14.04",
+                  "os_architecture" => 64,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "F9DCFAF16B4929D9F9AE6B24B125EC17",
+                  "name" => "centos6-32iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "Centos",
+                  "os_version" => "Centos6",
+                  "os_architecture" => 32,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "3E04654E0DA19EE6A3699272D4114AFA",
+                  "name" => "centos6-64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "Centos",
+                  "os_version" => "Centos6",
+                  "os_architecture" => 64,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "8F8CBE2DAB9FF6F0F9A4D846E82DD651",
+                  "name" => "rhel6-64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "RedHat",
+                  "os_version" => "RedHat6",
+                  "os_architecture" => 64,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "B62716F09C314B46D6782EA385E27206",
+                  "name" => "centos7-64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "Centos",
+                  "os_version" => "Centos7",
+                  "os_architecture" => 64,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "AE54D0EE48B1F6E59021FAA63988274B",
+                  "name" => "debian6-64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "Debian",
+                  "os_version" => "Debian6",
+                  "os_architecture" => 64,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "AA70C76B77BC6132117DCA202D34A5A4",
+                  "name" => "debian6-32iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "Debian",
+                  "os_version" => "Debian6",
+                  "os_architecture" => 32,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "4001EE28F2E195BD4D2D44844FAC9591",
+                  "name" => "debian7-64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "Debian",
+                  "os_version" => "Debian7",
+                  "os_architecture" => 64,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "B1A2D93BE081873BF127C9B9200849D8",
+                  "name" => "debian7-32iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "Debian",
+                  "os_version" => "Debian7",
+                  "os_architecture" => 32,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "DC0886301FA0BFDD8BA21F3E9FDFC012",
+                  "name" => "freebsd10-64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "FreeBSD",
+                  "os_version" => "FreeBSD10",
+                  "os_architecture" => 64,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "369A148192AAD04C83FEC050F9072C76",
+                  "name" => "freebsd10-32iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "FreeBSD",
+                  "os_version" => "FreeBSD10",
+                  "os_architecture" => 32,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "9F3A97E35D7C182EE7B871B7FBFEBBDC",
+                  "name" => "rhel7-64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Linux",
+                  "os" => "RedHat",
+                  "os_version" => "RedHat7",
+                  "os_architecture" => 64,
+                  "type" => "OS"
+                },
+                {
+                  "id" => "FEF6DB2420612426911F2F9CA9E25755",
+                  "name" => "w2008r2datacenter64iso",
+                  "available_datacenters" => [
+                  "DA41201B4A006EDE6DA62A5A62A658E7",
+                  "47FA5A2D251AE57935E30F9D5AB4F817",
+                  "7C5FA1D21B98DE39D7516333AAB7DA54"
+                  ],
+                  "os_family" => "Windows",
+                  "os" => "WindowsDatacenter",
+                  "os_version" => "Windows2008R2",
+                  "os_architecture" => 64,
+                  "type" => "OS"
+                }
               ]
             }
           end

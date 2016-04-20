@@ -25,7 +25,22 @@ module Fog
       class Mock
 
         def get_server_appliance(appliance_id)
-          Fog::Mock.not_implemented
+          
+          # Search for server appliance to return
+          if server_appliance = self.data[:server_appliances].find {
+            |hash| hash['id'] == appliance_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 200
+          response.body = server_appliance
+          response
+
         end
 
       end # Mock

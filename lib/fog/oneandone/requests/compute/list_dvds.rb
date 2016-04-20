@@ -41,7 +41,12 @@ module Fog
 
         def list_dvds(page: nil, per_page: nil, sort: nil, q: nil,
           fields: nil)
-          Fog::Mock.not_implemented
+          
+          response = Excon::Response.new
+          response.status = 200
+          response.body = self.data[:dvd_isos]
+          response
+
         end
 
       end # Mock

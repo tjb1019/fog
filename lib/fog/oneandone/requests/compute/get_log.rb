@@ -26,7 +26,22 @@ module Fog
       class Mock
 
         def get_log(log_id)
-          Fog::Mock.not_implemented
+          
+          # Search for log to return
+          if log = self.data[:logs].find {
+            |hash| hash['id'] == log_id
+          }
+          else
+            raise Fog::Errors::NotFound.new('The requested resource could
+              not be found.')
+          end
+
+          # Return Response Object to User
+          response = Excon::Response.new
+          response.status = 200
+          response.body = log
+          response
+
         end
 
       end # Mock
