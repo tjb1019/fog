@@ -232,6 +232,9 @@ module Fog
             :body => params['body'],
             :query => params['params'])
 
+          # Parse body
+          response.body = Fog::JSON.decode(response.body)
+
           # Check for server error
           if response.status == 500
             raise "Internal Server Error.  Please try again."

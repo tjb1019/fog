@@ -44,7 +44,7 @@ module Fog
           
           response = Excon::Response.new
           response.status = 200
-          response.body = Fog::JSON.encode(self.data[:images])
+          response.body = self.data[:images]
           response
 
         end

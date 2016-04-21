@@ -8,14 +8,12 @@ module Fog
 
         def all
           response = service.list_monitoring_policies
-          data = Fog::JSON.decode(response.body)
-          load(data)
+          load(response.body)
         end
 
         def get(id)
           response = service.get_monitoring_policy(id)
-          data = Fog::JSON.decode(response.body)
-          new(data)
+          new(response.body)
         rescue Excon::Errors::NotFound
           nil
         end

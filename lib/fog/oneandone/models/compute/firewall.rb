@@ -22,9 +22,8 @@ module Fog
           response = service.create_firewall(name: name, rules: rules,
             description: description)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -38,9 +37,8 @@ module Fog
           response = service.update_firewall(firewall_id: id, name: options[:name],
             description: options[:description])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -54,9 +52,8 @@ module Fog
           response = service.add_firewall_ips(firewall_id: id,
             ips: options[:ips])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -70,9 +67,8 @@ module Fog
           response = service.remove_firewall_ip(firewall_id: id,
             ip_id: options[:ip_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -86,9 +82,8 @@ module Fog
           response = service.add_firewall_rules(firewall_id: id,
             rules: options[:rules])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -102,9 +97,8 @@ module Fog
           response = service.delete_firewall_rule(firewall_id: id,
             rule_id: options[:rule_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 

@@ -39,8 +39,7 @@ module Fog
           # Return Response Object to User
           response = Excon::Response.new
           response.status = 202
-          response.body = Fog::JSON.encode('The requested image has been 
-            deleted.')
+          response.body = 'The requested image has been deleted.'
           response
 
         end

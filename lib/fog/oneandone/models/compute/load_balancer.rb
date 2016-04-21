@@ -36,9 +36,8 @@ module Fog
             method: method, rules: rules, health_check_path: health_check_path,
             health_check_parse: health_check_parse, datacenter_id: datacenter_id)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -59,9 +58,8 @@ module Fog
             health_check_path: options[:health_check_path],
             health_check_parse: options[:health_check_parse])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -75,9 +73,8 @@ module Fog
           response = service.add_load_balancer_ips(load_balancer_id: id,
             ips: options[:ips])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -91,9 +88,8 @@ module Fog
           response = service.remove_load_balancer_ip(load_balancer_id: id,
             ip_id: options[:ip_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -107,9 +103,8 @@ module Fog
           response = service.add_load_balancer_rules(load_balancer_id: id,
             rules: options[:rules])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -123,9 +118,8 @@ module Fog
           response = service.delete_load_balancer_rule(load_balancer_id: id,
             rule_id: options[:rule_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 

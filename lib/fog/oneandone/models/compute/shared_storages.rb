@@ -8,14 +8,12 @@ module Fog
 
         def all
           response = service.list_shared_storages
-          data = Fog::JSON.decode(response.body)
-          load(data)
+          load(response.body)
         end
 
         def get(id)
           response = service.get_shared_storage(id)
-          data = Fog::JSON.decode(response.body)
-          new(data)
+          new(response.body)
         rescue Excon::Errors::NotFound
           nil
         end

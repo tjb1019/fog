@@ -27,9 +27,8 @@ module Fog
             description: description, network_address: network_address,
             subnet_mask: subnet_mask, datacenter_id: datacenter_id)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -45,9 +44,8 @@ module Fog
             network_address: options[:network_address],
             subnet_mask: options[:subnet_mask])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -61,9 +59,8 @@ module Fog
           response = service.add_private_network_servers(private_network_id: id,
             servers: options[:servers])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -77,9 +74,8 @@ module Fog
           response = service.remove_private_network_server(private_network_id: id,
             server_id: options[:server_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 

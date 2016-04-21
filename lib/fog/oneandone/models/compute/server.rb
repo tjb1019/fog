@@ -57,9 +57,8 @@ module Fog
             ip_id: ip_id, load_balancer_id: load_balancer_id,
             monitoring_policy_id: monitoring_policy_id)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -73,9 +72,8 @@ module Fog
           response = service.update_server(server_id: id, name: options[:name],
             description: options[:description])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -91,9 +89,8 @@ module Fog
             vcore: options[:vcore], ram: options[:ram],
             cores_per_processor: options[:cores_per_processor])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -107,9 +104,8 @@ module Fog
           response = service.add_hdds(server_id: id,
             hdds: options[:hdds])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -123,9 +119,8 @@ module Fog
           response = service.delete_hdd(server_id: id,
             hdd_id: options[:hdd_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -139,9 +134,8 @@ module Fog
           response = service.update_hdd(server_id: id,
             hdd_id: options[:hdd_id], size: options[:size])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -156,9 +150,8 @@ module Fog
             image_id: options[:image_id], password: options[:password],
             firewall_id: options[:firewall_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -171,9 +164,8 @@ module Fog
 
           response = service.add_server_ip(server_id: id)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -187,9 +179,8 @@ module Fog
           response = service.delete_server_ip(server_id: id,
             ip_id: options[:ip_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -203,9 +194,8 @@ module Fog
           response = service.add_firewall(server_id: id,
             ip_id: options[:ip_id], firewall_id: options[:firewall_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -219,9 +209,8 @@ module Fog
           response = service.remove_firewall(server_id: id,
             ip_id: options[:ip_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -236,9 +225,8 @@ module Fog
             ip_id: options[:ip_id],
             load_balancer_id: options[:load_balancer_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -253,9 +241,8 @@ module Fog
             ip_id: options[:ip_id],
             load_balancer_id: options[:load_balancer_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -269,9 +256,8 @@ module Fog
           response = service.change_status(server_id: id,
             action: 'POWER_ON', method: 'SOFTWARE')
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -285,9 +271,8 @@ module Fog
           response = service.change_status(server_id: id,
             action: 'POWER_OFF', method: 'SOFTWARE')
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -301,9 +286,8 @@ module Fog
           response = service.change_status(server_id: id,
             action: 'REBOOT', method: 'SOFTWARE')
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -316,9 +300,8 @@ module Fog
 
           response = service.load_dvd(server_id: id, dvd_id: options[:dvd_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -331,9 +314,8 @@ module Fog
 
           response = service.eject_dvd(server_id: id)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -347,9 +329,8 @@ module Fog
           response = service.add_private_network(server_id: id,
             private_network_id: options[:private_network_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -363,9 +344,8 @@ module Fog
           response = service.remove_private_network(server_id: id,
             private_network_id: options[:private_network_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -378,9 +358,8 @@ module Fog
 
           response = service.create_snapshot(server_id: id)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -394,9 +373,8 @@ module Fog
           response = service.restore_snapshot(server_id: id,
             snapshot_id: options[:snapshot_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -410,9 +388,8 @@ module Fog
           response = service.delete_snapshot(server_id: id,
             snapshot_id: options[:snapshot_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -426,9 +403,8 @@ module Fog
           response = service.clone_server(server_id: id, name: options[:name],
             datacenter_id: options[:datacenter_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 

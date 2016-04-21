@@ -22,9 +22,8 @@ module Fog
           response = service.create_public_ip(type: type,
             reverse_dns: reverse_dns, datacenter_id: datacenter_id)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -38,9 +37,8 @@ module Fog
           response = service.update_public_ip(ip_id: id,
             reverse_dns: options[:reverse_dns])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 

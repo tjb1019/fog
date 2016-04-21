@@ -28,9 +28,8 @@ module Fog
             description: description, email: email, agent: agent,
             thresholds: thresholds, ports: ports, processes: processes)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -45,9 +44,8 @@ module Fog
             name: options[:name], description: options[:description],
             email: options[:email], thresholds: options[:thresholds])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -61,9 +59,8 @@ module Fog
           response = service.add_ports(monitoring_policy_id: id,
             ports: options[:ports])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -77,9 +74,8 @@ module Fog
           response = service.delete_port(monitoring_policy_id: id,
             port_id: options[:port_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -93,9 +89,8 @@ module Fog
           response = service.update_port(monitoring_policy_id: id,
             port_id: options[:port_id], new_port: options[:new_port])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -109,9 +104,8 @@ module Fog
           response = service.add_processes(monitoring_policy_id: id,
             processes: options[:processes])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -125,9 +119,8 @@ module Fog
           response = service.delete_process(monitoring_policy_id: id,
             process_id: options[:process_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -142,9 +135,8 @@ module Fog
             process_id: options[:process_id],
             new_process: options[:new_process])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -159,8 +151,7 @@ module Fog
             servers: options[:servers])
 
           # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          merge_attributes(response.body)
 
           true
 
@@ -174,9 +165,8 @@ module Fog
           response = service.remove_mp_server(monitoring_policy_id: id,
             server_id: options[:server_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 

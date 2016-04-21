@@ -24,9 +24,8 @@ module Fog
           response = service.create_shared_storage(name: name, size: size,
             description: description, datacenter_id: datacenter_id)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -41,9 +40,8 @@ module Fog
             name: options[:name], description: options[:description],
             size: options[:size])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -57,9 +55,8 @@ module Fog
           response = service.add_shared_storage_servers(shared_storage_id: id,
             servers: options[:servers])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -73,9 +70,8 @@ module Fog
           response = service.remove_shared_storage_server(shared_storage_id: id,
             server_id: options[:server_id])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 

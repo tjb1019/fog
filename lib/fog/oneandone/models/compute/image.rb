@@ -26,9 +26,8 @@ module Fog
           response = service.create_image(name: name, description: description,
             server_id: server_id, frequency: frequency, num_images: num_images)
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
@@ -42,9 +41,8 @@ module Fog
           response = service.update_image(image_id: id, name: options[:name],
             description: options[:description], frequency: options[:frequency])
 
-          # Decode and Merge Attributes
-          data = Fog::JSON.decode(response.body)
-          merge_attributes(data)
+          # Merge Attributes
+          merge_attributes(response.body)
 
           true
 
