@@ -37,7 +37,7 @@ module Fog
 
           # Search for server to remove
           if server = monitoring_policy['servers'].find {
-            |index| index['id'] == server_id
+            |index| index == server_id
           }
             monitoring_policy['servers'].delete(server)
           else

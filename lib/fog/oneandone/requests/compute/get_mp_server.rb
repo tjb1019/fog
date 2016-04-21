@@ -37,7 +37,7 @@ module Fog
 
           # Search for server to return
           if server = monitoring_policy['servers'].find {
-            |index| index['id'] == server_id
+            |index| index == server_id
           }
           else
             raise Fog::Errors::NotFound.new('The requested server could
