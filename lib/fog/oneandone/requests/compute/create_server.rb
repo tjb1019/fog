@@ -105,7 +105,14 @@ module Fog
             },
             "dvd" => nil,
             "snapshot" => {},
-            "ips" => [],
+            "ips" => [
+              {
+                'id' => Fog::UUID.uuid,
+                'type' => 'IPV4',
+                'firewall_policy' => {},
+                'load_balancers' => []
+              }
+            ],
             "alerts" => [],
             "monitoring_policy" => nil,
             "private_networks" => []

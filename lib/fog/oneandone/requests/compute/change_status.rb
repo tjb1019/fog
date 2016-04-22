@@ -45,6 +45,9 @@ module Fog
               server['status']['state'] = 'POWERED_ON'
             elsif action == 'POWER_OFF'
               server['status']['state'] = 'POWERED_OFF'
+            elsif action == 'REBOOT'
+              sleep 3
+              server['status']['state'] = 'POWERED_ON'
             end
           else
             raise Fog::Errors::NotFound.new('The requested resource could
