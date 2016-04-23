@@ -47,7 +47,7 @@ module Fog
           end
 
           # Clone server and save to servers list
-          clone = server
+          clone = server.dup
           clone['id'] = Fog::UUID.uuid
           clone['name'] = name
           self.data[:servers] << clone
