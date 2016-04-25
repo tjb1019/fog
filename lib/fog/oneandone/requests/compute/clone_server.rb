@@ -17,7 +17,7 @@ module Fog
           }
 
           # Stringify the PUT body
-          string_body = clone_specs.to_json
+          string_body = Fog::JSON.encode(clone_specs)
 
           # Request
           params = {

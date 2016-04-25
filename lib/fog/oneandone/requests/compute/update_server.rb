@@ -20,7 +20,7 @@ module Fog
           body = clean_hash(server_specs)
 
           # Stringify the PUT body
-          string_body = body.to_json
+          string_body = Fog::JSON.encode(body)
 
           # Request
           params = {

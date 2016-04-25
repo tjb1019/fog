@@ -16,7 +16,7 @@ module Fog
           }
 
           # Stringify the PUT body
-          string_body = firewall_specs.to_json
+          string_body = Fog::JSON.encode(firewall_specs)
 
           # Request
           params = {

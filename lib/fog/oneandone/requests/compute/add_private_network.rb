@@ -16,7 +16,7 @@ module Fog
           }
 
           # Stringify the PUT body
-          string_body = private_network_specs.to_json
+          string_body = Fog::JSON.encode(private_network_specs)
 
           # Request
           params = {

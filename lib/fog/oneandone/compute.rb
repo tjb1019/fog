@@ -226,6 +226,7 @@ module Fog
 
         def request(params)
 
+          # Perform Request
           response = @connection.request(:method => params['method'],
             :path => @version + params['endpoint'],
             :headers => @header,
@@ -240,7 +241,7 @@ module Fog
             raise "Internal Server Error.  Please try again."
           end
 
-          # Raise exception if a bad status code is received
+          # Raise exception if a bad status code is returned
           if not SUCCESS_CODES.include? response.status
             raise response.body
           end
@@ -251,6 +252,7 @@ module Fog
 
         def clean_hash(hash)
 
+          # Clear Out null Values
           hash.each do |key, value|
             if value == nil
               hash.delete(key)

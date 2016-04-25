@@ -17,7 +17,7 @@ module Fog
           }
 
           # Stringify the POST body
-          string_body = load_balancer_specs.to_json
+          string_body = Fog::JSON.encode(load_balancer_specs)
 
           # Request
           params = {

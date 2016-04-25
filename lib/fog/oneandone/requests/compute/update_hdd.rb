@@ -16,7 +16,7 @@ module Fog
           }
 
           # Stringify the PUT body
-          string_body = hdd_specs.to_json
+          string_body = Fog::JSON.encode(hdd_specs)
 
           # Request
           params = {

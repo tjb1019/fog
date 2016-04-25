@@ -16,7 +16,7 @@ module Fog
           }
 
           # Stringify the PUT body
-          string_body = dvd_specs.to_json
+          string_body = Fog::JSON.encode(dvd_specs)
 
           # Request
           params = {
