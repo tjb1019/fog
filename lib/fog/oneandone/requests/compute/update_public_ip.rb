@@ -16,7 +16,7 @@ module Fog
           }
 
           # Stringify the PUT body
-          string_body = update_ip.to_json
+          string_body = Fog::JSON.encode(update_ip)
 
           # Request
           params = {

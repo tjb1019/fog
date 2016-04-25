@@ -19,7 +19,7 @@ module Fog
           body = clean_hash(new_servers)
 
           # Stringify the POST body
-          string_body = body.to_json
+          string_body = Fog::JSON.encode(body)
 
           # Request
           params = {

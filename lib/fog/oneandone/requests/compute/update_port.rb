@@ -16,7 +16,7 @@ module Fog
           }
 
           # Stringify the PUT body
-          string_body = modified_port.to_json
+          string_body = Fog::JSON.encode(modified_port)
 
           # Request
           params = {

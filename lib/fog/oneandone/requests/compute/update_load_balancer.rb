@@ -30,7 +30,7 @@ module Fog
           body = clean_hash(new_load_balancer)
 
           # Stringify the POST body
-          string_body = body.to_json
+          string_body = Fog::JSON.encode(body)
 
           # Request
           params = {

@@ -22,7 +22,7 @@ module Fog
           body = clean_hash(new_shared_storage)
 
           # Stringify the PUT body
-          string_body = body.to_json
+          string_body = Fog::JSON.encode(body)
 
           # Request
           params = {

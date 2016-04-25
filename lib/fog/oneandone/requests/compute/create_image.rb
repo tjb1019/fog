@@ -24,7 +24,7 @@ module Fog
           body = clean_hash(new_image)
 
           # Stringify the POST body
-          string_body = body.to_json
+          string_body = Fog::JSON.encode(body)
 
           # Request
           params = {

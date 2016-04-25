@@ -16,7 +16,7 @@ module Fog
           }
 
           # Stringify the PUT body
-          string_body = new_password.to_json
+          string_body = Fog::JSON.encode(new_password)
 
           # Request
           params = {

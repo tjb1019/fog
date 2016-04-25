@@ -16,7 +16,7 @@ module Fog
           }
 
           # Stringify the POST body
-          string_body = add_servers.to_json
+          string_body = Fog::JSON.encode(add_servers)
 
           # Request
           params = {
