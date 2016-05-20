@@ -1,35 +1,22 @@
 language: ruby
 
-sudo: false
-
-script: bundle exec rake travis
-
 rvm:
-  - 1.9
   - 2.0
   - 2.1
   - 2.2
-  - jruby-head
-  - jruby-19mode
 
 gemfile:
   - Gemfile
-  - gemfiles/Gemfile-edge
 
 matrix:
   fast_finish: true
-  allow_failures:
-    - rvm: jruby-head
 
-notifications:
-  email: false
-  irc:
-    channels:
-      - "irc.freenode.org#ruby-fog"
-    template:
-      - "[#%{build_number}] %{message} %{build_url}"
-      - "[#%{build_number}] %{commit} on %{branch} by %{author}"
-      - "[#%{build_number}] %{compare_url}"
-    on_success: always
-    on_failure: always
-    use_notice: false
+script:
+  - ruby tests/oneandone/test_servers.rb
+  - ruby tests/oneandone/test_images.rb
+  - ruby tests/oneandone/test_firewalls.rb
+  - ruby tests/oneandone/test_shared_storages.rb
+  - ruby tests/oneandone/test_load_balancers.rb
+  - ruby tests/oneandone/test_monitoring_policies.rb
+  - ruby tests/oneandone/test_public_ips.rb
+  - ruby tests/oneandone/test_private_networks.rb
